@@ -1,0 +1,245 @@
+{
+	"info": {
+		"_postman_id": "e989f427-1ed8-4632-971a-d449771c145a",
+		"name": "Keycloak RBAC Example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get token - prasad (ADMIN)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "client_id",
+							"value": "spring-app"
+						},
+						{
+							"key": "client_secret",
+							"value": "spring-app-secret"
+						},
+						{
+							"key": "username",
+							"value": "prasad"
+						},
+						{
+							"key": "password",
+							"value": "admin123"
+						},
+						{
+							"key": "scope",
+							"value": "openid"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/realms/demo/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"realms",
+						"demo",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get token - siraj (USER)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "client_id",
+							"value": "spring-app"
+						},
+						{
+							"key": "client_secret",
+							"value": "spring-app-secret"
+						},
+						{
+							"key": "username",
+							"value": "siraj"
+						},
+						{
+							"key": "password",
+							"value": "user123"
+						},
+						{
+							"key": "scope",
+							"value": "openid"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/realms/demo/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"realms",
+						"demo",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/v1/employees (with token)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIyVnlxWUdtME5idkdCWktFcjBYckNOMWdvT1UzSTRjRENFUHo3NTVfWW84In0.eyJleHAiOjE3NTk2MTIwMzMsImlhdCI6MTc1OTYxMTczMywianRpIjoiMmQzNTdiMDAtZGIwZi00ZjhlLWJlODctNzc4MDQyZDZlNTMxIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9kZW1vIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWFwcCIsInNpZCI6ImUzMGU2Y2ZjLTgzM2MtNGFkNC1iMTFhLTc3ZTQ4MDQwODFhOCIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJBRE1JTiJdfSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiUHJhc2FkIEFkbWluIiwicHJlZmVycmVkX3VzZXJuYW1lIjoicHJhc2FkIiwiZ2l2ZW5fbmFtZSI6IlByYXNhZCIsImZhbWlseV9uYW1lIjoiQWRtaW4iLCJlbWFpbCI6InByYXNhZEBleGFtcGxlLmNvbSJ9.eHXxQLhn-qON8tIq7x6pDIRC0IE-kDbiAsKhLqc_StulicruvLjiW4Ghjo_aG2AXMOTnbNG0hvcv3Rt33fuk9EcPlHBnRsVVyvC0yrhbb4UtOB2frYjsh95c4nhWT_4Vzgrh7YSIJ26y4xKYAMLk5l5GjytCrB8GhRt8vlnQmlXKfABC5w74M9F34yCSmQhHsoU9ohUWygT6dL3eNtL-HxyUpR1danOa9XyJI3P0hVz7_mY8Nk-8e3wrwEMxU7WQI4GdZ2LTCMrEx1T23jq0aZ6zqmGB4gMEP_bVxedylMTYFV5pHTzPizsn1bwXaIVot-p1SFOyN3eFUxgQnN2Q9Q"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /api/v1/employees (create) - Admin only",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIyVnlxWUdtME5idkdCWktFcjBYckNOMWdvT1UzSTRjRENFUHo3NTVfWW84In0.eyJleHAiOjE3NTk2MTE0OTUsImlhdCI6MTc1OTYxMTE5NSwianRpIjoiMDc3YjkzNzItNDBkMC00MWU1LTgwYjgtYmJmYzUwZmMwNmUzIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9kZW1vIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWFwcCIsInNpZCI6ImM0NzE5N2QyLWVjNTEtNDdiMC05ZGY4LWE5NmE0MGVjZTRiMyIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJBRE1JTiJdfSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiUHJhc2FkIEFkbWluIiwicHJlZmVycmVkX3VzZXJuYW1lIjoicHJhc2FkIiwiZ2l2ZW5fbmFtZSI6IlByYXNhZCIsImZhbWlseV9uYW1lIjoiQWRtaW4iLCJlbWFpbCI6InByYXNhZEBleGFtcGxlLmNvbSJ9.h8GzV8-4wbJ2U-UL2Gh9_GZSljqJ_DgQQPIbyJlvNwvtNz4RgFkUAOeZVau--4exE-x32U5M8benxjWgktP7GtO2IuQCgELVpxAFgDzrij3mXKvL7p6trS7GnTqCkqYeehx82qGLaPr9BqlxF1R4IggfVaLroYG3IlYVHsidU4BzUZYGxcRcs6N_54wTqk7058d7-lmb3EIIroWej-vqQWE5R2zu-AMeb4cOSU4A-LU3X-FeGG4ij0vVf0Qx9Ultd2MDADX3aTcnQ-oDbnBgbbOhZ6x_G5uDojG_7NKI51sQkKjqYUxzj8lXw-55dWccmueHpHcAb_Z0yowCgOKBiA"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Rahul Sharma\",\n    \"designation\": \"Sr. Software Engieer\",\n    \"salary\": 8000000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /api/v1/employees/:id - Admin only",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIyVnlxWUdtME5idkdCWktFcjBYckNOMWdvT1UzSTRjRENFUHo3NTVfWW84In0.eyJleHAiOjE3NTk2MTIwMzMsImlhdCI6MTc1OTYxMTczMywianRpIjoiMmQzNTdiMDAtZGIwZi00ZjhlLWJlODctNzc4MDQyZDZlNTMxIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9kZW1vIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWFwcCIsInNpZCI6ImUzMGU2Y2ZjLTgzM2MtNGFkNC1iMTFhLTc3ZTQ4MDQwODFhOCIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJBRE1JTiJdfSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiUHJhc2FkIEFkbWluIiwicHJlZmVycmVkX3VzZXJuYW1lIjoicHJhc2FkIiwiZ2l2ZW5fbmFtZSI6IlByYXNhZCIsImZhbWlseV9uYW1lIjoiQWRtaW4iLCJlbWFpbCI6InByYXNhZEBleGFtcGxlLmNvbSJ9.eHXxQLhn-qON8tIq7x6pDIRC0IE-kDbiAsKhLqc_StulicruvLjiW4Ghjo_aG2AXMOTnbNG0hvcv3Rt33fuk9EcPlHBnRsVVyvC0yrhbb4UtOB2frYjsh95c4nhWT_4Vzgrh7YSIJ26y4xKYAMLk5l5GjytCrB8GhRt8vlnQmlXKfABC5w74M9F34yCSmQhHsoU9ohUWygT6dL3eNtL-HxyUpR1danOa9XyJI3P0hVz7_mY8Nk-8e3wrwEMxU7WQI4GdZ2LTCMrEx1T23jq0aZ6zqmGB4gMEP_bVxedylMTYFV5pHTzPizsn1bwXaIVot-p1SFOyN3eFUxgQnN2Q9Q"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Rahul Sharma\",\n    \"designation\": \"Lead\",\n    \"salary\": 9000000.0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/employees/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"employees",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /api/v1/employees/:id - Admin only",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIyVnlxWUdtME5idkdCWktFcjBYckNOMWdvT1UzSTRjRENFUHo3NTVfWW84In0.eyJleHAiOjE3NTk2MTIwMzMsImlhdCI6MTc1OTYxMTczMywianRpIjoiMmQzNTdiMDAtZGIwZi00ZjhlLWJlODctNzc4MDQyZDZlNTMxIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9kZW1vIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWFwcCIsInNpZCI6ImUzMGU2Y2ZjLTgzM2MtNGFkNC1iMTFhLTc3ZTQ4MDQwODFhOCIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJBRE1JTiJdfSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiUHJhc2FkIEFkbWluIiwicHJlZmVycmVkX3VzZXJuYW1lIjoicHJhc2FkIiwiZ2l2ZW5fbmFtZSI6IlByYXNhZCIsImZhbWlseV9uYW1lIjoiQWRtaW4iLCJlbWFpbCI6InByYXNhZEBleGFtcGxlLmNvbSJ9.eHXxQLhn-qON8tIq7x6pDIRC0IE-kDbiAsKhLqc_StulicruvLjiW4Ghjo_aG2AXMOTnbNG0hvcv3Rt33fuk9EcPlHBnRsVVyvC0yrhbb4UtOB2frYjsh95c4nhWT_4Vzgrh7YSIJ26y4xKYAMLk5l5GjytCrB8GhRt8vlnQmlXKfABC5w74M9F34yCSmQhHsoU9ohUWygT6dL3eNtL-HxyUpR1danOa9XyJI3P0hVz7_mY8Nk-8e3wrwEMxU7WQI4GdZ2LTCMrEx1T23jq0aZ6zqmGB4gMEP_bVxedylMTYFV5pHTzPizsn1bwXaIVot-p1SFOyN3eFUxgQnN2Q9Q"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/employees/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"employees",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

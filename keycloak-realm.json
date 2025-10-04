@@ -1,0 +1,61 @@
+{
+  "realm": "demo",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "spring-app",
+      "secret": "spring-app-secret",
+      "protocol": "openid-connect",
+      "redirectUris": ["http://localhost:8081/*"],
+      "publicClient": false,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "fullScopeAllowed": true,
+      "defaultClientScopes": ["email", "profile", "roles"],
+      "optionalClientScopes": ["address", "phone", "offline_access"]
+    }
+  ],
+  "roles": {
+    "realm": [
+      { "name": "ADMIN" },
+      { "name": "USER" }
+    ]
+  },
+  "users": [
+    {
+      "username": "prasad",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "prasad@example.com",
+      "firstName": "Prasad",
+      "lastName": "Admin",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin123",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["ADMIN"],
+      "requiredActions": []
+    },
+    {
+      "username": "siraj",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "siraj@example.com",
+      "firstName": "Siraj",
+      "lastName": "User",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "user123",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["USER"],
+      "requiredActions": []
+    }
+  ]
+}
